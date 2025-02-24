@@ -19,7 +19,7 @@ function App() {
 
     if(!text) {
 
-      setImageUrl('../src/assets/default.png')
+      setImageUrl('../public/default.png')
 
     }
   
