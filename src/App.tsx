@@ -7,7 +7,7 @@ import { createPdf } from './script/createPdf.ts';
 
 function App() {
 
-  const [imageUrl, setImageUrl] = useState('../public/default.png')
+  const [imageUrl, setImageUrl] = useState('/default.png')
   const [labelWidth, setLabelWidth] = useState(0)
   const [labelHeight, setLabelHeight] = useState(0)
   const [qrWidth, setQrWidth] = useState(0)
@@ -16,11 +16,11 @@ function App() {
   const handleQRTextChange = async (event: ChangeEvent<HTMLTextAreaElement>) => {
 
     const text = event.target?.value;
-
+    
     if(!text) {
 
-      setImageUrl('../public/default.png')
-
+      setImageUrl('/default.png')
+      return
     }
   
     setImageUrl(await qrCodeUrl(text))
