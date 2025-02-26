@@ -10,8 +10,8 @@ function App() {
   const [imageUrl, setImageUrl] = useState('/default.png')
   const [labelWidth, setLabelWidth] = useState(0)
   const [labelHeight, setLabelHeight] = useState(0)
-  const [qrWidth, setQrWidth] = useState(0)
-  const [qrHeight, setQrHeight] = useState(0)
+  const [qrSize, setQrSize] = useState(0)
+  
 
   const handleQRTextChange = async (event: ChangeEvent<HTMLTextAreaElement>) => {
 
@@ -41,7 +41,7 @@ function App() {
 
   }
 
-  const handleQrWidth = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleQrSize = (event: ChangeEvent<HTMLInputElement>) => {
 
     const width = parseInt(event.target.value)
 
@@ -50,27 +50,16 @@ function App() {
       alert('QR width must be less than label width')
       return
     }
-    setQrWidth(width)
+    setQrSize(width)
 
   }
 
-  const handleQrHeigth =  (event: ChangeEvent<HTMLInputElement>) =>{
-
-    const height = parseInt(event.target.value)
-    if(labelHeight && height >= labelHeight) {
-
-      alert('QR width must be less than label width')
-      return
-    }
-    setQrHeight(height)
-
-  }
 
   const handlePrint = () => {
 
     if(imageUrl) {
 
-      createPdf(labelWidth, labelHeight, qrWidth, qrHeight, imageUrl)
+      createPdf(labelWidth, labelHeight, qrSize, imageUrl)
 
     }
 
@@ -119,19 +108,13 @@ function App() {
               </div>
             </div>
             <div className="qr-size-container">
-              <h4 id='qr-size-title'>QR Dimensions</h4>
               <div className="qr-input-container">
-                <label htmlFor="q-width">W</label>
+                <h4 id='qr-size-title'>QR Size</h4>
                 <input type="text"
                   name="q-width"
                   id="q-width"
-                  onChange={handleQrWidth}
+                  onChange={handleQrSize}
                 />
-                <label htmlFor="q-height">H</label>
-                <input type="text"
-                  name="q-height"
-                  id="q-height"
-                  onChange={handleQrHeigth}/>
               </div>
             </div>
           </div>

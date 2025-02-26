@@ -1,13 +1,16 @@
 import jsPDF from "jspdf";
 
 
-export const createPdf = (l_width: number, l_height: number, q_width: number, q_height: number, imageData: string) => {
+export const createPdf = (l_width: number, l_height: number, q_size: number, imageData: string) => {
 
     const pdf = new jsPDF('l', 'cm', [l_width, l_height])
 
+    const x = (l_width - q_size) / 2
+    const y = (l_height - q_size) / 2
+
     if(imageData) {
 
-        pdf.addImage(imageData, 'PNG', 1, 0.2, q_width, q_height)
+        pdf.addImage(imageData, 'PNG', x, y, q_size, q_size)
         pdf.autoPrint({variant: 'non-conform'});
         pdf.save('label.pdf')
     }
